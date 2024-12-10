@@ -32,7 +32,7 @@ export const GET = (
   const response = createReadStream(filePath);
 
   const fileStats = statSync(filePath);
-  const contentType = mime.getType(filePath) || 'application/octet-stream';
+  const contentType = mime.extension(filePath) || 'application/octet-stream';
 
   const iterator = nodeStreamToIterator(response);
   const webStream = iteratorToStream(iterator);

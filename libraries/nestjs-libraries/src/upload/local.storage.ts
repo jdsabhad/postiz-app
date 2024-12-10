@@ -6,12 +6,12 @@ import { extname } from 'path';
 import axios from 'axios';
 
 export class LocalStorage implements IUploadProvider {
-  constructor(private uploadDirectory: string) {}
+  constructor(private uploadDirectory: string) { }
 
   async uploadSimple(path: string) {
     const loadImage = await axios.get(path, { responseType: 'arraybuffer' });
     const contentType = loadImage?.headers?.['content-type'] || loadImage?.headers?.['Content-Type'];
-    const findExtension = mime.getExtension(contentType)!;
+    const findExtension = mime.extension(contentType)!;
 
     const now = new Date();
     const year = now.getFullYear();
